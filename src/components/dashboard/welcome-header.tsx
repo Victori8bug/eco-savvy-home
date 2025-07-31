@@ -15,13 +15,7 @@ export function WelcomeHeader({
 }: WelcomeHeaderProps) {
   return (
     <div className="relative overflow-hidden rounded-xl bg-gradient-primary p-6 mb-6">
-      <div className="absolute inset-0 opacity-20">
-        <img 
-          src={energyHero} 
-          alt="Energy Dashboard" 
-          className="w-full h-full object-cover"
-        />
-      </div>
+      <div className="absolute inset-0 bg-primary/10"></div>
       
       <div className="relative z-10">
         <div className="flex items-start justify-between mb-4">
