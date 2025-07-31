@@ -33,11 +33,6 @@ export function EfficiencyScore({ score, maxScore, feedback }: EfficiencyScorePr
               value={percentage} 
               className="h-3 bg-muted"
             />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className={`w-full h-full rounded-full ${
-                isGoodScore ? "bg-gradient-success" : "bg-warning"
-              } opacity-90`} style={{ width: `${percentage}%` }} />
-            </div>
           </div>
         </div>
         
