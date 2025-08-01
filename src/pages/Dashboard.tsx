@@ -16,7 +16,7 @@ const Dashboard = () => {
     <div className="min-h-screen bg-background pb-20">
       <div className="max-w-md mx-auto px-4 py-6">
         <WelcomeHeader
-          userName="Alex"
+          userName="Anmol"
           subtitle="Take control of your energy future"
           notificationCount={4}
         />
