@@ -2,9 +2,34 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BottomNav } from "@/components/ui/bottom-nav";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TrendingDown, Calendar, Lightbulb, AlertTriangle } from "lucide-react";
+import { TrendingDown, Calendar, Lightbulb, AlertTriangle, Euro } from "lucide-react";
 import { ConsumptionChart } from "@/components/dashboard/consumption-chart";
-import { UsageBreakdown } from "@/components/dashboard/usage-breakdown";
+
+const usageBreakdown = [
+  { name: "Air Conditioning", value: 35, color: "hsl(var(--warning))" },
+  { name: "Water Heating", value: 25, color: "hsl(var(--primary))" },
+  { name: "Appliances", value: 20, color: "hsl(var(--success))" },
+  { name: "Lighting", value: 12, color: "hsl(var(--primary))" },
+  { name: "Other", value: 8, color: "hsl(var(--muted-foreground))" },
+];
+
+const tips = [
+  {
+    title: "Optimize AC Usage",
+    description: "Pre-cool your home during peak solar hours (11 AM - 2 PM) to reduce evening energy costs by up to 25%.",
+    savings: "€15/month"
+  },
+  {
+    title: "Smart Water Heating", 
+    description: "Schedule water heating during off-peak hours to save on energy costs while maintaining comfort.",
+    savings: "€8/month"
+  },
+  {
+    title: "Appliance Scheduling",
+    description: "Run dishwasher and laundry during solar peak hours to maximize your renewable energy usage.",
+    savings: "€12/month"
+  }
+];
 
 const Insights = () => {
   return (
@@ -22,81 +47,80 @@ const Insights = () => {
 
           <TabsContent value="3months" className="space-y-4 mt-6">
             <ConsumptionChart />
-            <UsageBreakdown />
-          </TabsContent>
-
-          <TabsContent value="tips" className="space-y-4 mt-6">
-            <Card className="border-0 shadow-card-soft bg-gradient-card">
-              <CardContent className="p-4">
-                <div className="flex items-start gap-3">
-                  <div className="p-2 bg-success rounded-lg">
-                    <Lightbulb size={16} className="text-white" />
+            
+            {/* Usage Breakdown */}
+            <Card className="energy-card p-4">
+              <h3 className="font-semibold text-energy-text mb-4">Usage Breakdown</h3>
+              
+              {/* Simple Usage Visualization */}
+              <div className="h-48 mb-4 flex items-center justify-center">
+                <div className="relative w-32 h-32">
+                  <div className="absolute inset-0 rounded-full bg-muted/30"></div>
+                  <div className="absolute inset-2 rounded-full flex items-center justify-center bg-background">
+                    <span className="text-sm font-bold text-energy-text">Usage</span>
                   </div>
-                  <div>
-                    <h3 className="font-semibold mb-2 text-primary">Optimize AC Usage</h3>
-                    <p className="text-sm text-muted-foreground mb-3">
-                      Pre-cool your home during peak solar hours (11 AM - 2 PM) to reduce evening energy costs by up to 25%.
-                    </p>
-                    <div className="text-sm text-success font-medium">
-                      € Potential savings: €15/month
-                    </div>
-                  </div>
+                  {/* Simplified ring segments */}
+                  <div className="absolute inset-0 rounded-full border-8 border-orange-accent/60" 
+                       style={{ clipPath: 'polygon(50% 50%, 50% 0%, 100% 0%, 100% 50%)' }}></div>
+                  <div className="absolute inset-0 rounded-full border-8 border-primary/60" 
+                       style={{ clipPath: 'polygon(50% 50%, 100% 50%, 100% 100%, 50% 100%)' }}></div>
+                  <div className="absolute inset-0 rounded-full border-8 border-green-energy/60" 
+                       style={{ clipPath: 'polygon(50% 50%, 50% 100%, 0% 100%, 0% 50%)' }}></div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
 
-            <Card className="border-0 shadow-card-soft bg-gradient-card">
-              <CardContent className="p-4">
-                <div className="flex items-start gap-3">
-                  <div className="p-2 bg-success rounded-lg">
-                    <Lightbulb size={16} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2 text-primary">Smart Water Heating</h3>
-                    <p className="text-sm text-muted-foreground mb-3">
-                      Schedule water heating during off-peak hours to save on energy costs while maintaining comfort.
-                    </p>
-                    <div className="text-sm text-success font-medium">
-                      € Potential savings: €8/month
+              <div className="space-y-2">
+                {usageBreakdown.map((item) => (
+                  <div key={item.name} className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div 
+                        className="w-3 h-3 rounded-full"
+                        style={{ backgroundColor: item.color }}
+                      ></div>
+                      <span className="text-sm text-foreground">{item.name}</span>
                     </div>
+                    <span className="text-sm font-medium text-energy-text">{item.value}%</span>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-card-soft bg-gradient-card">
-              <CardContent className="p-4">
-                <div className="flex items-start gap-3">
-                  <div className="p-2 bg-success rounded-lg">
-                    <Lightbulb size={16} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2 text-primary">Appliance Scheduling</h3>
-                    <p className="text-sm text-muted-foreground mb-3">
-                      Run dishwasher and laundry during solar peak hours to maximize your renewable energy usage.
-                    </p>
-                    <div className="text-sm text-success font-medium">
-                      € Potential savings: €12/month
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
+                ))}
+              </div>
             </Card>
           </TabsContent>
 
-          <TabsContent value="alerts" className="space-y-4 mt-6">
-            <Card className="border-0 shadow-card-soft bg-warning text-warning-foreground">
-              <CardContent className="p-4">
+          <TabsContent value="6months" className="space-y-6">
+            <Card className="energy-card p-4">
+              <h3 className="font-semibold text-energy-text mb-4">6-Month Analysis</h3>
+              <p className="text-muted-foreground">Extended consumption analysis coming soon...</p>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="tips" className="space-y-4">
+            {tips.map((tip, index) => (
+              <Card key={index} className="energy-card p-4">
                 <div className="flex items-start gap-3">
-                  <AlertTriangle size={20} className="mt-0.5 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-semibold mb-2">High Usage Alert</h3>
-                    <p className="text-sm mb-3">
-                      You're using 16% more energy than your neighbors this week. Check your appliance usage for optimization opportunities.
+                  <div className="p-2 bg-green-energy/10 rounded-lg">
+                    <TrendingDown className="w-4 h-4 text-green-energy" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-energy-text mb-2">{tip.title}</h4>
+                    <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
+                      {tip.description}
                     </p>
+                    <div className="flex items-center gap-1">
+                      <Euro className="w-4 h-4 text-green-energy" />
+                      <span className="text-sm font-medium text-green-energy">
+                        Potential savings: {tip.savings}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </CardContent>
+              </Card>
+            ))}
+          </TabsContent>
+
+          <TabsContent value="alerts" className="space-y-6">
+            <Card className="energy-card p-4">
+              <h3 className="font-semibold text-energy-text mb-4">Energy Alerts</h3>
+              <p className="text-muted-foreground">No active alerts at this time.</p>
             </Card>
           </TabsContent>
         </Tabs>
