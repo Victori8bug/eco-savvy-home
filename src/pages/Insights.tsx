@@ -6,11 +6,11 @@ import { TrendingDown, Calendar, Lightbulb, AlertTriangle, Euro } from "lucide-r
 import { ConsumptionChart } from "@/components/dashboard/consumption-chart";
 
 const usageBreakdown = [
-  { name: "Air Conditioning", value: 35, color: "hsl(var(--warning))" },
-  { name: "Water Heating", value: 25, color: "hsl(var(--primary))" },
-  { name: "Appliances", value: 20, color: "hsl(var(--success))" },
-  { name: "Lighting", value: 12, color: "hsl(var(--primary))" },
-  { name: "Other", value: 8, color: "hsl(var(--muted-foreground))" },
+  { name: "Air Conditioning", value: 35, color: "#df8941" },
+  { name: "Water Heating", value: 25, color: "#113080" },
+  { name: "Appliances", value: 20, color: "#82ba5a" },
+  { name: "Lighting", value: 12, color: "#0d2d7f" },
+  { name: "Other", value: 8, color: "#6b7280" }
 ];
 
 const tips = [
