@@ -20,6 +20,11 @@ const Community = () => {
             <CardHeader className="pb-3">
               <CardTitle className="text-lg font-semibold"> Your Neighborhood</CardTitle>
             </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="text-center">
+                <Badge className="bg-success text-success-foreground mb-4">
+                  #23 of 156
+                </Badge>
               </div>
               
               <div className="space-y-3">
