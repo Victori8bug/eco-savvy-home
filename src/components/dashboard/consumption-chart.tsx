@@ -1,77 +1,56 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis } from "recharts";
-import { Calendar, TrendingDown } from "lucide-react";
-
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 const data = [
-  { month: "Oct", value: 420, height: 80 },
-  { month: "Nov", value: 380, height: 60 },
-  { month: "Dec", value: 350, height: 45 },
+  { name: "Air Conditioning", value: 35, color: "#df8941" },
+  { name: "Water Heating", value: 25, color: "#113080" },
+  { name: "Appliances", value: 20, color: "#82ba5a" },
+  { name: "Lighting", value: 12, color: "#0d2d7f" },
+  { name: "Other", value: 8, color: "#6b7280" },
 ];
-
-export default function ConsumptionChart() {
-  const maxValue = Math.max(...data.map(d=> d.value));
-  
+export function UsageBreakdown() {
   return (
-    <div className="p-6 bg-gray-50 min-h-screen flex items-center justify-center">
-      <Card className="border-0 shadow-lg bg-white w-full max-w-md">
-        <CardHeader className="pb-3">
-          <div className="flex items-center gap-2">
-            <Calendar size={20} className="text-blue-600" />
-            <CardTitle className="text-base font-semibold">3-Month Consumption Trend</CardTitle>
-          </div>
-          <p className="text-sm text-gray-600">October - December 2024</p>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            <div className="h-48 relative">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={data} margin={{ top: 15, right: 15, left: 15, bottom: 30 }}>
-                  <XAxis 
-                    dataKey="month" 
-                    axisLine={false} 
-                    tickLine={false}
-                    fontSize={12}
-                    className="fill-gray-600"
-                  />
-                  <YAxis hide />
-                  <Bar 
-                    dataKey="value" 
-                    fill="#f97316"
-                    radius={[4, 4, 0, 0]}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
-           
-              <div className="absolute bottom-0 left-0 right-0 flex justify-around px-4">
-                  {data.map((item, index) => (
-                    <div key={index} className="text-center">
-                      <div className="text-sm font-bold text-gray-800">{item.value} kWh</div>
-                      {index > 0 && (
-                        <div className="text-xs text-green-600 font-medium">
-                          -{data[0].value - item.value} vs Oct
-                        </div>
-                      )}
-                    </div>
+    <Card className="border-0 shadow-card-soft bg-gradient-card">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-base font-semibold">Usage Breakdown</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4">
+          <div className="h-40 flex items-center justify-center">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={data}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={40}
+                  outerRadius={70}
+                  paddingAngle={2}
+                  dataKey="value"
+                >
+                  {data.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
-                </div>
-              </div>
-            
-            <div className="grid grid-cols-2 gap-4 pt-4 border-t">
-              <div className="text-center">
-                <div className="flex items-center gap-1 justify-center mb-1">
-                  <TrendingDown size={16} className="text-green-600" />
-                  <span className="text-lg font-bold text-green-600">-18%</span>
-                </div>
-                <p className="text-xs text-gray-600">Consumption reduction</p>
-              </div>
-              <div className="text-center">
-                <div className="text-lg font-bold text-green-600 mb-1">€63</div>
-                <p className="text-xs text-gray-600">Total savings</p>
-              </div>
-            </div>
+                </Pie>
+              </PieChart>
+            </ResponsiveContainer>
           </div>
-        </CardContent>
-      </Card>
-    </div>
+          
+          <div className="space-y-3">
+            {data.map((item, index) => (
+              <div key={index} className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div 
+                    className="w-3 h-3 rounded-full" 
+                    style={{ backgroundColor: item.color }}
+                  ></div>
+                  <span className="text-sm">{item.name}</span>
+                </div>
+                <span className="text-sm font-medium">{item.value}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
