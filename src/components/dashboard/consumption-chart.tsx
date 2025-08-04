@@ -8,7 +8,7 @@ const data = [
   { month: "Dec", value: 350, height: 45 },
 ];
 
-export default function ConsumptionChart() {
+export function ConsumptionChart() {
   const maxValue = Math.max(...data.map(d => d.value));
   
   return (
