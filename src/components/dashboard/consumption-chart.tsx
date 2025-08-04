@@ -12,7 +12,6 @@ export function ConsumptionChart() {
   const maxValue = Math.max(...data.map(d => d.value));
   
   return (
-    <div className="p-6 bg-gray-50 min-h-screen flex items-center justify-center">
       <Card className="border-0 shadow-lg bg-white w-full max-w-md">
         <CardHeader className="pb-3">
           <div className="flex items-center gap-2">
