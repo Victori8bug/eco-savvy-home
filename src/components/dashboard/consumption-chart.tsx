@@ -23,7 +23,7 @@ export function ConsumptionChart() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <div className="h-35">
+            <div className="h-48 relative">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={data} margin={{ top: 15, right: 15, left: 15, bottom: 30 }}>
                   <XAxis 
