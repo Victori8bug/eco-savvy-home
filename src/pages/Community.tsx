@@ -22,9 +22,6 @@ const Community = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="text-center">
-                <Badge className="bg-success text-success-foreground mb-4">
-                  #23 of 156
-                </Badge>
               </div>
               
               <div className="space-y-3">
