@@ -4,14 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TrendingDown, Calendar, Lightbulb, AlertTriangle, Euro } from "lucide-react";
 import { ConsumptionChart } from "@/components/dashboard/consumption-chart";
-
-const usageBreakdown = [
-  { name: "Air Conditioning", value: 35, color: "#df8941" },
-  { name: "Water Heating", value: 25, color: "#113080" },
-  { name: "Appliances", value: 20, color: "#82ba5a" },
-  { name: "Lighting", value: 12, color: "#0d2d7f" },
-  { name: "Other", value: 8, color: "#6b7280" }
-];
+import UsageBreakdown from "@/components/dashboard/usage-breakdown";
 
 const tips = [
   {
@@ -49,41 +42,8 @@ const Insights = () => {
             <ConsumptionChart />
             
             {/* Usage Breakdown */}
-            <Card className="energy-card p-4">
-              <h3 className="font-semibold text-energy-text mb-4">Usage Breakdown</h3>
-              
-              {/* Simple Usage Visualization */}
-              <div className="h-48 mb-4 flex items-center justify-center">
-                <div className="relative w-32 h-32">
-                  <div className="absolute inset-0 rounded-full bg-muted/30"></div>
-                  <div className="absolute inset-2 rounded-full flex items-center justify-center bg-background">
-                    <span className="text-sm font-bold text-energy-text">Usage</span>
-                  </div>
-                  {/* Simplified ring segments */}
-                  <div className="absolute inset-0 rounded-full border-8 border-orange-accent/60" 
-                       style={{ clipPath: 'polygon(50% 50%, 50% 0%, 100% 0%, 100% 50%)' }}></div>
-                  <div className="absolute inset-0 rounded-full border-8 border-primary/60" 
-                       style={{ clipPath: 'polygon(50% 50%, 100% 50%, 100% 100%, 50% 100%)' }}></div>
-                  <div className="absolute inset-0 rounded-full border-8 border-green-energy/60" 
-                       style={{ clipPath: 'polygon(50% 50%, 50% 100%, 0% 100%, 0% 50%)' }}></div>
-                </div>
-              </div>
 
-              <div className="space-y-2">
-                {usageBreakdown.map((item) => (
-                  <div key={item.name} className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div 
-                        className="w-3 h-3 rounded-full"
-                        style={{ backgroundColor: item.color }}
-                      ></div>
-                      <span className="text-sm text-foreground">{item.name}</span>
-                    </div>
-                    <span className="text-sm font-medium text-energy-text">{item.value}%</span>
-                  </div>
-                ))}
-              </div>
-            </Card>
+            <UsageBreakdown />
           </TabsContent>
 
           <TabsContent value="6months" className="space-y-6">
