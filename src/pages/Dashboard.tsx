@@ -18,7 +18,7 @@ const Dashboard = () => {
         <WelcomeHeader
           userName="Porto"
           subtitle="Take control of your energy future"
-          notificationCount={4}
+          notificationCount={3}
         />
         
         <div className="space-y-6">
